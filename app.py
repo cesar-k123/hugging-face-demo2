@@ -1,5 +1,7 @@
 import torch
 from transformers import pipeline
+import gradio as gr
+
 
 model = pipeline(
     "summarization",
@@ -9,17 +11,34 @@ model = pipeline(
 
 
 def predict(prompt):
-    input_length = len(prompt.split())
-    max_len = min(60, input_length)  # Adjust max_length based on input size
+    if not prompt.strip():
+        return "Please enter some text to summarize."
+    try:
+        summary = model(prompt)[0]["summary_text"]
+        print("Summary:", summary)
+        return summary
+    except Exception as e:
+        print("Error during summarization:", e)
+        return "An error occurred. Please check your input or try again."
 
-    summary = model(prompt, max_length=max_len, min_length=5, do_sample=False)[0][
-        "summary_text"
-    ]
-    # summary = model(prompt)[0]["summary_text"]
-    print("Summary:", summary)
-    return summary
 
 
-predict(
-    " THE STRANGE CASE OF DOCTOR JEKYLL AND MR. HYDE Robert Louis Stevenson InfoBooks.org SYNOPSIS OF THE STRANGE CASE OF DR. JEKYLL AND MR. HYDE The Strange Case of Dr. Jekyll and Mr. Hyde is a short psychological horror novel, a true classic of universal literature that deals with a very human and complex theme. Its exquisite descriptions and the atmosphere of mystery that remains until "
-)
+
+with gr.Blocks() as demo:
+    gr.Markdown("# Text Summarization with BART")
+    with gr.Row():
+        with gr.Column():
+            txt = gr.Textbox(
+                label="Input Text",
+                placeholder="Enter text to summarize",
+                lines=10,
+            )
+        with gr.Column():
+            summary = gr.Textbox(
+                label="Summary",
+                placeholder="Summary will appear here",
+                lines=10,
+            )
+    btn = gr.Button("Summarize")
+    btn.click(fn=predict, inputs=txt, outputs=summary)
+demo.launch()
