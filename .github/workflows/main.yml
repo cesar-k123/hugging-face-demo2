@@ -27,5 +27,5 @@ jobs:
       env:
         HF_TOKEN: ${{ secrets.HF_TOKEN }}
       run: |
-        git remote add space https://huggingface.co/spaces/cesarrf/demo2
-        git push https://cesarrf:$HF_TOKEN@huggingface.co/spaces/cesarrf/demo2 main
+        git remote add space https://cesarrf:$HF_TOKEN@huggingface.co/spaces/cesarrf/demo2
+        git push space main
