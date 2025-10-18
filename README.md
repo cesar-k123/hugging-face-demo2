@@ -1,11 +1,12 @@
 ---
-title: summarizing app
-emoji: 🤗
-colorFrom: blue
-colorTo: green
-sdk: tensorflow
+title: sumarize
+emoji: 🚀
+colorFrom: indigo
+colorTo: blue
+sdk: gradio
+sdk_version: "4.14.0"
+app_file: app.py
 pinned: false
-models:
-- bert
-- --
+---
+
 # hugging-face-demo2
