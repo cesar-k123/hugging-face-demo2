@@ -27,5 +27,4 @@ jobs:
       env:
         HF_TOKEN: ${{ secrets.HG }}
       run: |
-        git remote set-url origin https://cesarrf:HF_TOKEN@huggingface.co/spaces/cesarrf/demo2
-        git push origin main
+        git push https://cesarrf:HF_TOKEN@huggingface.co/spaces/cesarrf/demo2 main
