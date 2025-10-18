@@ -27,4 +27,4 @@ jobs:
       env:
         HF_TOKEN: ${{ secrets.HG }}
       run: |
-        git push --forece https://cesarrf:HF_TOKEN@huggingface.co/spaces/cesarrf/demo2 main
+        git push --force https://cesarrf:HF_TOKEN@huggingface.co/spaces/cesarrf/demo2 main
