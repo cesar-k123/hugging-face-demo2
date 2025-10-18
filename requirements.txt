@@ -7,4 +7,5 @@ tf_keras==2.16.0
 uvicorn==0.37.0
 pylint
 black
-torch
+torch==2.9.0+cu128
+transformers==4.57.1
